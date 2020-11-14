@@ -45,7 +45,7 @@ function initMap() {
 
 
     });
-    google.maps.event.addListener(marker, 'dragend',
+    google.maps.event.addListener(marker, window, 'load','dragend',
         function (marker) {
             var latLng = marker.latLng;
             currentLatitude = latLng.lat();
