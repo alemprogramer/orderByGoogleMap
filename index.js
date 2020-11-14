@@ -54,7 +54,7 @@ function initMap() {
             console.log(currentLongitude);
             $("#la").val(currentLatitude);
             $("#lo").val(currentLongitude);
-        },window, 'load',
+        }
     );
 },showError)
 }else{
