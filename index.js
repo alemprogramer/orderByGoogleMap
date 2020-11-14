@@ -26,6 +26,7 @@ function initMap() {
         streetViewControl: true,
         scaleControl: true,
         rotateControl: true,
+        // mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
         center: uluru
     });
 
@@ -39,17 +40,7 @@ function initMap() {
         scaleControl: true,
         rotateControl: true,
 
-    }
-        //   {
-        //     mapTypeId: google.maps.MapTypeId.ROADMAP,
-        //     mapTypeControl: true,
-        //     disableDoubleClickZoom: false,
-        //     zoomControlOptions: true,
-        //     streetViewControl: true,
-        //     scaleControl: true,
-        //     rotateControl: true,
-        // },
-    );
+    });
     google.maps.event.addListener(marker, 'dragend',
         function (marker) {
             var latLng = marker.latLng;
