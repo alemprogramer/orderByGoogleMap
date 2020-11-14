@@ -8,6 +8,7 @@ function initMap() {
     /**
      *Passing the value of variable received from text box
      **/
+    // if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(
          position => {
                 console.log(position.coords.latitude,position.coords.longitude)
@@ -55,3 +56,5 @@ function initMap() {
 })
     
 }
+
+google.maps.event.addDomListener(window, 'load', getLocation);
