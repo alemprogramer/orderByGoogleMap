@@ -20,6 +20,10 @@ function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: true,
+        disableDoubleClickZoom: false,
+        zoomControlOptions: true,
+        streetViewControl: true,
         scaleControl: true,
         rotateControl: true,
         center: uluru
