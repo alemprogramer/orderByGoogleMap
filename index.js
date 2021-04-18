@@ -1,68 +1,46 @@
-/**
- *Receiving the value of text box and type done conversion by Number() 
- */
-var latitude = Number(document.getElementById("la").value);
-var longitude = Number(document.getElementById("lo").value);
-
 function initMap() {
-    /**
-     *Passing the value of variable received from text box
-     **/
- if(navigator.geolocation){
+  if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
-         position => {
-                console.log(position.coords.latitude,position.coords.longitude)
-  
-    var uluru = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-    };
+      position => {
+        console.log(position.coords.latitude, position.coords.longitude);
 
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 16,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        mapTypeControl: true,
-        disableDoubleClickZoom: false,
-        zoomControlOptions: true,
-        streetViewControl: true,
-        scaleControl: true,
-        rotateControl: true,
-        // mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
-        center: uluru,
-        
-    });
+        const coords = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
 
+        const map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 16,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          mapTypeControl: true,
+          disableDoubleClickZoom: false,
+          zoomControlOptions: true,
+          streetViewControl: true,
+          scaleControl: true,
+          rotateControl: true,
+          // mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
+          center: coords,
 
-
-    marker = new google.maps.Marker({
-        map: map,
-        draggable: true,
-        animation: google.maps.Animation.DROP,
-        position: uluru,
-        scaleControl: true,
-        rotateControl: true,
-        
-
-
-    });
-    google.maps.event.addListener(marker, 'dragend',
-        function (marker) {
-            var latLng = marker.latLng;
-            currentLatitude = latLng.lat();
-            currentLongitude = latLng.lng();
-            console.log(currentLatitude);
-            console.log(currentLongitude);
-            $("#la").val(currentLatitude);
-            $("#lo").val(currentLongitude);
-        }
-    );
-},showError)
-}else{
+        });
+        var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';//for maker change
+        marker = new google.maps.Marker({
+           map,
+          draggable: true,
+          animation: google.maps.Animation.DROP,
+          // icon: iconBase + 'library_maps.png',
+          position: coords,
+        });
+        google.maps.event.addListener(marker, 'dragend',function (marker) {
+            document.getElementById("la").value = marker.latLng.lat();
+            document.getElementById("lo").value = marker.latLng.lng();
+          });
+      }, showError)
+  } else {
     alert("Geolocation is not supported by this browser.");
-}
+  }
 
-function showError(error) {
-    switch(error.code) {
+  function showError(error) {
+    switch (error.code) {
       case error.PERMISSION_DENIED:
         x.innerHTML = "User denied the request for Geolocation."
         break;
@@ -77,6 +55,5 @@ function showError(error) {
         break;
     }
   }
-    
-}
 
+}

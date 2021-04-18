@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+  <center><h1>This is your location</h1></center>
+
+
+
+  <p id="map"></p>
+
+
+  <script>
+    var map = document.getElementById("map");
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position.coords);
+
+          let coords =`<iframe style = "border-width:0px;" width = "100%" height = "500" src="https://maps.google.com/maps?q=${ position.coords.latitude},${position.coords.longitude}&output=embed"> </iframe> `
+          
+            map.innerHTML = coords;
+        });
+      } else {
+        map.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+    getLocation();
+  </script>
+
+</body>
+
+</html>
